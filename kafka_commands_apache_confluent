@@ -1,0 +1,45 @@
+Source: https://github.com/basanta-spring-boot/documents
+
+-- Start ZooKepper
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+Default Port 2181
+
+-- Start Kafka Server
+$ bin/kafka-server-start.sh config/server.properties
+Default Port 9092
+
+-- Create Topics
+$ bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic javatechie-topic --partitions 3 --replication-factor 1
+Result: Created topic javatechie-topic.
+
+
+-- Install Offset Explorer
+Url: https://www.kafkatool.com/download.html
+
+-- Change Java JRE version
+$ sudo update-alternatives --config java
+
+-- Send messages by Producer
+$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic javatechie-topic
+-- Send a bulk of messages from csv
+$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic javatechie-topic </home/Downloads/user.csv
+Every row in the csv is a message, The ZooKeeper is the coordinator and It manages and assigns these messages to each partions
+
+
+-- Receive messages Consumer
+$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic javatechie-topic
+
+
+Confluent commands
+-- Start ZooKepper
+$ bin/zookeeper-server-start etc/kafka/zookeeper.properties
+
+-- Start Kafka Server
+bin/kafka-server-start etc/kafka/server.properties
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic quickstart-topic --from-beginning --property print.key=true --property print.value=true
+
+--Select the java version 
+sudo update-alternatives --config java
+
+
